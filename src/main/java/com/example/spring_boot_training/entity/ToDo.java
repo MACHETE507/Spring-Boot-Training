@@ -23,10 +23,10 @@ public class ToDo {
     private Long id;
     private String aufgabe;
     private String datum;
-
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn
-    private List<ToDo> meineToDoListe;
+//
+//    @OneToMany(cascade = CascadeType.PERSIST)
+//    @JoinColumn
+//    private List<ToDo> meineToDoListe;
 
 
 
