@@ -2,6 +2,8 @@ package com.example.spring_boot_training.database;
 
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.repository.ToDoRepository;
+import com.example.spring_boot_training.service.ToDoService;
+import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,13 +13,13 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @Component
+@RequiredArgsConstructor
 public class DatabaseCommandLineRunner implements CommandLineRunner {
 
-    private ToDoRepository todoRepository;
+    private final ToDoRepository todoRepository;
 
-    public DatabaseCommandLineRunner(@Autowired ToDoRepository todoRepository) {
-        this.todoRepository = todoRepository;
-    }
+    private final ToDoService toDoService;
+
 
     @Override
     public void run(String... args) throws Exception{
@@ -48,5 +50,7 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
         todoListe5.setDatum("05.09.2022");
 
          todoRepository.saveAll(Arrays.asList( todoListe, todoListe2, todoListe3, todoListe4, todoListe5));
+
+
     }
 }

@@ -23,6 +23,8 @@ public class ToDo {
     private Long id;
     private String aufgabe;
     private String datum;
+
+    private boolean isDone;
 //
 //    @OneToMany(cascade = CascadeType.PERSIST)
 //    @JoinColumn
