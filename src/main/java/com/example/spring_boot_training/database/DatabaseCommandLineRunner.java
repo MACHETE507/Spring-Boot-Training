@@ -1,6 +1,8 @@
 package com.example.spring_boot_training.database;
 
+import com.example.spring_boot_training.entity.Haus;
 import com.example.spring_boot_training.entity.ToDo;
+import com.example.spring_boot_training.repository.HausRepository;
 import com.example.spring_boot_training.repository.ToDoRepository;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +56,20 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
         todoListe5.setDatum("05.09.2022");
         todoListe5.setIsDone(true);
 
+        Haus haus1 = new Haus();
+        haus1.setNummer(001L);
+        haus1.setStandort("Köln");
+        haus1.setZimmerAnzahl(4);
+        haus1.setFlaecheinQM(120);
+
+        Haus haus2= new Haus();
+        haus2.setNummer(002L);
+        haus2.setStandort("Berlin");
+        haus2.setZimmerAnzahl(2);
+        haus2.setFlaecheinQM(64);
+
         todoRepository.saveAll(Arrays.asList(todoListe, todoListe2, todoListe3, todoListe4, todoListe5));
+
 
 //      toDoService.createToDoListe(todoListe);
 
