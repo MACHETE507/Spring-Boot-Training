@@ -9,18 +9,24 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class HausServiceimplements implements HausService{
+public class HausServiceimplements implements HausService {
 
     private final HausRepository hausRepository;
 
-    /** Haus: Alle Einträge einlesen **/
-    public List<Haus> getHaus() {
-        return (List<Haus>) this.hausRepository.findAll();
+    /**
+     * Haus: erstellen
+     **/
+    public Haus getCreateHaus(Haus haus) {
+        return this.hausRepository.save(haus);
     }
 
-    /** Haus: Einträge erstellen **/
-    public Haus getCreateHaus(Haus haus){
-      return this.hausRepository.save(haus);
+//    public void deleteHaus(Haus haus){
+//        this.hausRepository.delete((haus));
+//    }
+
+    /** Haus:  update **/
+    public Haus updateHaus(Haus haus){
+        return this.hausRepository.save(haus);
     }
 
     /** Haus: löschen **/
@@ -28,10 +34,12 @@ public class HausServiceimplements implements HausService{
         this.hausRepository.delete(haus);
     }
 
-    /** Haus: updaten **/
-    public Haus updateHaus(Haus haus){
-        return this.hausRepository.save(haus);
+
+    /** Haus: Alle ToDos lesen **/
+    public List<Haus> getHaus() {
+        return (List<Haus>) this.hausRepository.findAll();
     }
+
 
     /** Häuser zählen **/
     public Long getcountHaus(){
