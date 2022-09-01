@@ -2,15 +2,17 @@ package com.example.spring_boot_training.controller;
 
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.service.ToDoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Todo")
+@RequestMapping("/todo")
+@RequiredArgsConstructor
 public class MeinErsterController {
 
-    private ToDoService toDoService;
+    private final ToDoService toDoService;
 
     //Test
     //@GetMapping
@@ -19,45 +21,54 @@ public class MeinErsterController {
     }
 
     //A
-    @PostMapping
-    public void getCreate(@RequestBody ToDo todo){
-        this.toDoService.createToDoListe(todo);
+    @PostMapping()
+    public ToDo getCreate(@RequestBody ToDo todo){
+        return this.toDoService.createToDo(todo);
     }
 
     //B
-    //@PutMapping
-    public void getUpdate(){
-
+    @PutMapping()
+    public ToDo getUpdate(@RequestBody ToDo todoupdate){
+        return this.toDoService.updateToDo(todoupdate);
     }
 
     //C
-    //@DeleteMapping
-    public void getDelete(){
-
+    @DeleteMapping()
+    public void getDelete(@RequestBody ToDo todo){
+        this.toDoService.deleteToDoListe(todo);
     }
 
     //D
-    //@GetMapping
+    @GetMapping
     public List<ToDo> GetreadTodo(){
         return this.toDoService.getToDoListe();
     }
 
     //E
-    //@GetMapping
-    public void readfinishedTodo(){
-
+    @GetMapping("/finished")
+    public List<ToDo> readfinishedTodo(){
+        return this.toDoService.geterledigteToDoListe();
     }
 
     //F
-    //@GetMapping
-    public void readopenTodo(){
-
+    @GetMapping("/open")
+    public List<ToDo> readopenTodo(){
+        return this.toDoService.getOffeneToDos();
     }
 
     //G
-
+    @GetMapping("/count/finished")
+    public Long countfinishedTodos(){
+        return this.toDoService.getcounterledigteTodos();
+    }
 
     //H
+    @GetMapping("/count/open")
+    public Long countopenTodos(){
+        return this.toDoService.getcountoffeneTodos();
+    }
+
+
 
 
 }

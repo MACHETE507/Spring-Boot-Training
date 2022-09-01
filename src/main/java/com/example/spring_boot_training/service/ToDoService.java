@@ -7,5 +7,17 @@ import java.util.List;
 public interface ToDoService {
     List<ToDo> getToDoListe();
 
-    public void createToDoListe(ToDo toDo);
+    public ToDo createToDo(ToDo toDo);
+
+    public void deleteToDoListe(ToDo toDo);
+
+    public ToDo updateToDo(ToDo todoupdate);
+
+    List<ToDo> geterledigteToDoListe();
+
+    List<ToDo> getOffeneToDos();
+
+    public Long getcounterledigteTodos();
+
+    public Long getcountoffeneTodos();
 }

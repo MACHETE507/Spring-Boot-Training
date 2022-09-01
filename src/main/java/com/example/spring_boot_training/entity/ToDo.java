@@ -24,7 +24,7 @@ public class ToDo {
     private String aufgabe;
     private String datum;
 
-    private boolean isDone;
+    private Boolean isDone;
 //
 //    @OneToMany(cascade = CascadeType.PERSIST)
 //    @JoinColumn

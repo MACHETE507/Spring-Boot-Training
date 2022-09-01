@@ -22,52 +22,53 @@ public class ToDoServiceimplements implements ToDoService{
     private final ToDoRepository toDoRepository;
 
     //ToDo-Liste erstellen (A)
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public void createToDoListe(ToDo toDo){
+    public ToDo createToDo(ToDo toDo){
 
-            this.toDoRepository.save(toDo);
+          return this.toDoRepository.save(toDo);
     }
 
-    //ToDo.Liste update (B)
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public void updateToDo(ToDo todo){
+    public void deleteToDoListe(ToDo toDo) {
+        this.toDoRepository.delete(toDo);
+    }
 
-        this.toDoRepository.save(todo);
+
+    //ToDo.Liste update (B)
+    public ToDo updateToDo(ToDo todo){
+
+        return this.toDoRepository.save(todo);
     }
 
     //ToDo-Liste löschen (C)
-    @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    //Void ist korrekt.
     public void deleteToDoListe(Long id){
          this.toDoRepository.deleteById(id);
     }
 
     //ToDo-Liste: Alle ToDos lesen (D)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ToDo> getToDoListe(){
         return (List<ToDo>) this.toDoRepository.findAll();
     }
 
     //ToDO-LIste: Erledigte ToDos lesen (E)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ToDo> geterledigteToDoListe(){
 
-        return toDoRepository.findAllByIsDone(true);
+        return toDoRepository.findAllByIsDoneIs(true);
     }
 
     //ToDo-Liste: Offene ToDos lesen (F)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ToDo> getOffeneToDos(ToDo todo){
-        return toDoRepository.findAllByIsDone(false);
+    public List<ToDo> getOffeneToDos(){
+        return toDoRepository.findAllByIsDoneIs(false);
     }
-/*
-    //Todo-Liste: Anzahl an erledigten ToDos lesen
-    public List<ToDo> erledigteToDos(){
-        this.toDoRepository.count(geterledigteToDoListe())
+
+    //Todo-Liste: Anzahl an erledigten ToDos lesen (G)
+
+       public Long getcounterledigteTodos(){
+        return this.toDoRepository.countAllByIsDoneIs(true);
     }
 
 
     //ToDo-Liste: Anzahl an offenen ToDos (H)
-    public List<ToDo> AnzahlToDoListe(){
-        this.toDoRepository.count(getOffeneToDos());
-    }*/
+    public Long getcountoffeneTodos(){
+       return this.toDoRepository.countAllByIsDoneIs(false);
+    }
 }
