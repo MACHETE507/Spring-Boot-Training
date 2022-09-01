@@ -3,14 +3,12 @@ package com.example.spring_boot_training.controller;
 import com.example.spring_boot_training.entity.Haus;
 import com.example.spring_boot_training.service.HausService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("haus")
+@RequestMapping("/haus")
 @RequiredArgsConstructor
 public class HausController {
 
@@ -19,5 +17,24 @@ public class HausController {
     @GetMapping
     public List<Haus> GetbuildHouse(){
         return this.hausService.getHaus();
+    }
+
+    @PostMapping
+    public Haus getcreateHouse(Haus haus){
+        return this.hausService.getCreateHaus(haus);
+    }
+    @DeleteMapping()
+    public void getDeleteHouse(@RequestBody Haus haus){
+        this.hausService.deleteHausListe(haus);
+    }
+
+    @PutMapping
+    public Haus getUpdateHouse(@RequestBody Haus haus){
+        return this.hausService.updateHaus(haus);
+    }
+
+    @GetMapping("/anzahl")
+    public Long countHouse(){
+        return this.hausService.getcountHaus();
     }
 }

@@ -4,6 +4,8 @@ import com.example.spring_boot_training.entity.Haus;
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.repository.HausRepository;
 import com.example.spring_boot_training.repository.ToDoRepository;
+import com.example.spring_boot_training.service.HausService;
+import com.example.spring_boot_training.service.HausServiceimplements;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
@@ -21,6 +23,10 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
     private final ToDoRepository todoRepository;
 
     private final ToDoService toDoService;
+
+    private final HausRepository hausRepository;
+
+    private final HausService hausService;
 
 
     @Override
@@ -69,7 +75,7 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
         haus2.setFlaecheinQM(64);
 
         todoRepository.saveAll(Arrays.asList(todoListe, todoListe2, todoListe3, todoListe4, todoListe5));
-
+        hausRepository.saveAll(Arrays.asList(haus1, haus2));
 
 //      toDoService.createToDoListe(todoListe);
 
