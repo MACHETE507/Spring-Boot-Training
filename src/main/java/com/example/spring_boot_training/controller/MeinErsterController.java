@@ -1,8 +1,12 @@
 package com.example.spring_boot_training.controller;
 
+import com.example.spring_boot_training.dto.todo.TodoDToDelete;
+import com.example.spring_boot_training.dto.todo.TodoDtoCreate;
+import com.example.spring_boot_training.dto.todo.TodoDtoUpdate;
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +18,7 @@ import java.util.List;
 public class MeinErsterController {
 
     private final ToDoService toDoService;
+    private final ModelMapper modelMapper;
 
     //Test
     //@GetMapping
@@ -23,20 +28,23 @@ public class MeinErsterController {
 
     /** Datensätze erstellen **/
     @PostMapping()
-    public ToDo getCreate (@Validated @RequestBody ToDo todo){
-        return this.toDoService.createToDo(todo);
+    public ToDo getCreate (@Validated @RequestBody TodoDtoCreate todoCreate){
+        return toDoService.createToDo(modelMapper.map(todoCreate, ToDo.class));
+        //return this.toDoService.createToDo(todo);
     }
 
     /** Datensätze ändern **/
     @PutMapping()
-    public ToDo getUpdate(@Validated @RequestBody ToDo todoupdate){
-        return this.toDoService.updateToDo(todoupdate);
+    public ToDo getUpdate(@Validated @RequestBody TodoDtoUpdate todoupdate){
+        return toDoService.updateToDo(modelMapper.map(todoupdate, ToDo.class));
+        //return this.toDoService.updateToDo(todoupdate);
     }
 
     /** Datensätze entfernen **/
     @DeleteMapping()
-    public void getDelete(@Validated @RequestBody ToDo todo){
-        this.toDoService.deleteToDoListe(todo);
+    public void getDelete(@Validated @RequestBody TodoDToDelete tododelete){
+        this.toDoService.deleteToDoListe(modelMapper.map(tododelete, ToDo.class));
+        //this.toDoService.deleteToDoListe(todo);
     }
 
     /** Alle Datensätze bzw Start **/

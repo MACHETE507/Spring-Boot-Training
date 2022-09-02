@@ -16,25 +16,30 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
-
 @Entity
 public class ToDo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @NotNull
     private Long id;
 
-    @NotEmpty
-    @Size(max = 30)
+//    @NotEmpty
+//    @Size(max = 30)
     private String aufgabe;
 
-    @NotEmpty
+//    @NotEmpty
     private String datum;
 
     private Boolean isDone;
-//
+
+    public ToDo(String aufgabe, String datum, Boolean isDone) {
+        this.aufgabe = aufgabe;
+        this.datum = datum;
+        this.isDone = isDone;
+    }
+
+    //
 //    @OneToMany(cascade = CascadeType.PERSIST)
 //    @JoinColumn
 //    private List<ToDo> meineToDoListe;
