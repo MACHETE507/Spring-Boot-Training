@@ -20,4 +20,7 @@ public interface ToDoService {
     public Long getcounterledigteTodos();
 
     public Long getcountoffeneTodos();
+
+    public ToDo getException(Long id);
+
 }

@@ -1,25 +1,21 @@
 package com.example.spring_boot_training.service;
 
+import com.example.spring_boot_training.exceptionHandler.EntityExceptionHandler;
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.repository.ToDoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
-import java.awt.*;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ToDoServiceimplements implements ToDoService{
 
     private final ToDoRepository toDoRepository;
+
+    private final EntityExceptionHandler exceptionHandler;
 
     /** ToDo-Liste erstellen (A) **/
     public ToDo createToDo(ToDo toDo){
@@ -70,4 +66,13 @@ public class ToDoServiceimplements implements ToDoService{
     public Long getcountoffeneTodos(){
        return this.toDoRepository.countAllByIsDoneIs(false);
     }
+
+    /** Übung: zentrales Exceptionhandling **/
+    public ToDo getException(Long id){
+        return toDoRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException(String.format("ToDo with the id %d could not be found", id))
+        );
+    }
+
+
 }

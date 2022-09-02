@@ -8,6 +8,7 @@ import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,6 @@ public class MeinErsterController {
 
     /** Datensätze erstellen **/
     @PostMapping()
-    @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public ToDo getCreate (@Validated @RequestBody TodoDtoCreate todoCreate){
         return toDoService.createToDo(modelMapper.map(todoCreate, ToDo.class));
@@ -38,8 +38,7 @@ public class MeinErsterController {
 
     /** Datensätze ändern **/
     @PutMapping()
-    @ResponseBody
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public ToDo getUpdate(@Validated @RequestBody TodoDtoUpdate todoupdate){
         return toDoService.updateToDo(modelMapper.map(todoupdate, ToDo.class));
         //return this.toDoService.updateToDo(todoupdate);
@@ -47,8 +46,7 @@ public class MeinErsterController {
 
     /** Datensätze entfernen **/
     @DeleteMapping()
-    @ResponseBody
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void getDelete(@Validated @RequestBody TodoDToDelete tododelete){
         this.toDoService.deleteToDoListe(modelMapper.map(tododelete, ToDo.class));
         //this.toDoService.deleteToDoListe(todo);
@@ -56,34 +54,46 @@ public class MeinErsterController {
 
     /** Alle Datensätze bzw Start **/
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<ToDo> GetreadTodo(){
         return this.toDoService.getToDoListe();
     }
 
     /** fertige Datensätze **/
     @GetMapping("/finished")
+    @ResponseStatus(HttpStatus.OK)
     public List<ToDo> readfinishedTodo(){
         return this.toDoService.geterledigteToDoListe();
     }
 
     /** offene Datensätze **/
     @GetMapping("/open")
+    @ResponseStatus(HttpStatus.OK)
     public List<ToDo> readopenTodo(){
         return this.toDoService.getOffeneToDos();
     }
 
     /** Anzahl fertiger Datensätze **/
     @GetMapping("/count/finished")
+    @ResponseStatus(HttpStatus.OK)
     public Long countfinishedTodos(){
         return this.toDoService.getcounterledigteTodos();
     }
 
     /** Anzahl offener Datensätze **/
     @GetMapping("/count/open")
+    @ResponseStatus(HttpStatus.OK)
     public Long countopenTodos(){
         return this.toDoService.getcountoffeneTodos();
     }
 
+    /** globales ExceptionHandling **/
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ToDo> get(@PathVariable Long id) {
+        return new ResponseEntity<>(toDoService.getException(id), HttpStatus.OK);
+    }
 
 
 
