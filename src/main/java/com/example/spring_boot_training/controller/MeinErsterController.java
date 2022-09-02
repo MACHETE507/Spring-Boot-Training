@@ -7,6 +7,7 @@ import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,8 @@ public class MeinErsterController {
 
     /** Datensätze erstellen **/
     @PostMapping()
+    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
     public ToDo getCreate (@Validated @RequestBody TodoDtoCreate todoCreate){
         return toDoService.createToDo(modelMapper.map(todoCreate, ToDo.class));
         //return this.toDoService.createToDo(todo);
@@ -35,6 +38,8 @@ public class MeinErsterController {
 
     /** Datensätze ändern **/
     @PutMapping()
+    @ResponseBody
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ToDo getUpdate(@Validated @RequestBody TodoDtoUpdate todoupdate){
         return toDoService.updateToDo(modelMapper.map(todoupdate, ToDo.class));
         //return this.toDoService.updateToDo(todoupdate);
@@ -42,6 +47,8 @@ public class MeinErsterController {
 
     /** Datensätze entfernen **/
     @DeleteMapping()
+    @ResponseBody
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void getDelete(@Validated @RequestBody TodoDToDelete tododelete){
         this.toDoService.deleteToDoListe(modelMapper.map(tododelete, ToDo.class));
         //this.toDoService.deleteToDoListe(todo);
