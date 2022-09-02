@@ -3,6 +3,7 @@ package com.example.spring_boot_training.controller;
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,19 +23,19 @@ public class MeinErsterController {
 
     //A
     @PostMapping()
-    public ToDo getCreate (@RequestBody ToDo todo){
+    public ToDo getCreate (@Validated @RequestBody ToDo todo){
         return this.toDoService.createToDo(todo);
     }
 
     //B
     @PutMapping()
-    public ToDo getUpdate(@RequestBody ToDo todoupdate){
+    public ToDo getUpdate(@Validated @RequestBody ToDo todoupdate){
         return this.toDoService.updateToDo(todoupdate);
     }
 
     //C
     @DeleteMapping()
-    public void getDelete(@RequestBody ToDo todo){
+    public void getDelete(@Validated @RequestBody ToDo todo){
         this.toDoService.deleteToDoListe(todo);
     }
 

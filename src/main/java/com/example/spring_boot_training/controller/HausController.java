@@ -3,6 +3,7 @@ package com.example.spring_boot_training.controller;
 import com.example.spring_boot_training.entity.Haus;
 import com.example.spring_boot_training.service.HausService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,16 +21,16 @@ public class HausController {
     }
 
     @PostMapping
-    public Haus getcreateHouse(@RequestBody Haus haus){
+    public Haus getcreateHouse(@Validated @RequestBody Haus haus){
         return this.hausService.getCreateHaus(haus);
     }
     @DeleteMapping()
-    public void getDeleteHouse(@RequestBody Haus haus){
+    public void getDeleteHouse(@Validated @RequestBody Haus haus){
         this.hausService.deleteHausListe(haus);
     }
 
     @PutMapping
-    public Haus getUpdateHouse(@RequestBody Haus haus){
+    public Haus getUpdateHouse(@Validated @RequestBody Haus haus){
         return this.hausService.updateHaus(haus);
     }
 
