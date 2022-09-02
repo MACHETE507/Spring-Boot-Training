@@ -27,6 +27,7 @@ public class ToDo {
     private Long id;
 
     @NotEmpty
+    @Size(max = 30)
     private String aufgabe;
 
     @NotEmpty
