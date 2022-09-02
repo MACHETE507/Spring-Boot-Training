@@ -20,7 +20,7 @@ public class HausController {
     }
 
     @PostMapping
-    public Haus getcreateHouse(Haus haus){
+    public Haus getcreateHouse(@RequestBody Haus haus){
         return this.hausService.getCreateHaus(haus);
     }
     @DeleteMapping()
