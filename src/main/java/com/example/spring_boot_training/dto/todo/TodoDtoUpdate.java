@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 @Getter
 @Setter
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 public class TodoDtoUpdate {
 
         @NotNull
+        @Positive
         private Long id;
 
         @NotEmpty
@@ -23,5 +25,6 @@ public class TodoDtoUpdate {
         @NotEmpty
         private String datum;
 
+        @NotNull
         private Boolean isDone;
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -16,6 +17,7 @@ public class TodoDToDelete {
 
 
     @NotNull
+    @Positive
     private Long id;
 
     @NotEmpty
@@ -25,6 +27,7 @@ public class TodoDToDelete {
     @NotEmpty
     private String datum;
 
+    @NotNull
     private Boolean isDone;
 
 }
