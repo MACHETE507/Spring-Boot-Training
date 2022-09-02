@@ -32,6 +32,8 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        /** Erstellen von Listen **/
+
         ToDo todoListe = new ToDo();
         todoListe.setId(1L);
         todoListe.setAufgabe("kochen");
@@ -62,6 +64,8 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
         todoListe5.setDatum("05.09.2022");
         todoListe5.setIsDone(true);
 
+        /** Erstellen von Häusern **/
+
         Haus haus1 = new Haus();
         haus1.setNummer(001L);
         haus1.setStandort("Köln");
@@ -73,6 +77,8 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
         haus2.setStandort("Berlin");
         haus2.setZimmerAnzahl(2);
         haus2.setFlaecheinQM(64);
+
+        /** Daten speichern **/
 
         todoRepository.saveAll(Arrays.asList(todoListe, todoListe2, todoListe3, todoListe4, todoListe5));
         hausRepository.saveAll(Arrays.asList(haus1, haus2));

@@ -21,49 +21,49 @@ public class MeinErsterController {
         return "Erster Controller";
     }
 
-    //A
+    /** Datensätze erstellen **/
     @PostMapping()
     public ToDo getCreate (@Validated @RequestBody ToDo todo){
         return this.toDoService.createToDo(todo);
     }
 
-    //B
+    /** Datensätze ändern **/
     @PutMapping()
     public ToDo getUpdate(@Validated @RequestBody ToDo todoupdate){
         return this.toDoService.updateToDo(todoupdate);
     }
 
-    //C
+    /** Datensätze entfernen **/
     @DeleteMapping()
     public void getDelete(@Validated @RequestBody ToDo todo){
         this.toDoService.deleteToDoListe(todo);
     }
 
-    //D
+    /** Alle Datensätze bzw Start **/
     @GetMapping
     public List<ToDo> GetreadTodo(){
         return this.toDoService.getToDoListe();
     }
 
-    //E
+    /** fertige Datensätze **/
     @GetMapping("/finished")
     public List<ToDo> readfinishedTodo(){
         return this.toDoService.geterledigteToDoListe();
     }
 
-    //F
+    /** offene Datensätze **/
     @GetMapping("/open")
     public List<ToDo> readopenTodo(){
         return this.toDoService.getOffeneToDos();
     }
 
-    //G
+    /** Anzahl fertiger Datensätze **/
     @GetMapping("/count/finished")
     public Long countfinishedTodos(){
         return this.toDoService.getcounterledigteTodos();
     }
 
-    //H
+    /** Anzahl offener Datensätze **/
     @GetMapping("/count/open")
     public Long countopenTodos(){
         return this.toDoService.getcountoffeneTodos();

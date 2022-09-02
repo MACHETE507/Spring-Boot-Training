@@ -21,7 +21,7 @@ public class ToDoServiceimplements implements ToDoService{
 
     private final ToDoRepository toDoRepository;
 
-    //ToDo-Liste erstellen (A)
+    /** ToDo-Liste erstellen (A) **/
     public ToDo createToDo(ToDo toDo){
 
           return this.toDoRepository.save(toDo);
@@ -32,42 +32,41 @@ public class ToDoServiceimplements implements ToDoService{
     }
 
 
-    //ToDo.Liste update (B)
+    /** ToDo.Liste update (B) **/
     public ToDo updateToDo(ToDo todo){
 
         return this.toDoRepository.save(todo);
     }
 
-    //ToDo-Liste löschen (C)
-    //Void ist korrekt.
+    /** ToDo-Liste löschen (C) **/
     public void deleteToDoListe(Long id){
          this.toDoRepository.deleteById(id);
     }
 
-    //ToDo-Liste: Alle ToDos lesen (D)
+    /** ToDo-Liste: Alle ToDos lesen (D) **/
     public List<ToDo> getToDoListe(){
         return (List<ToDo>) this.toDoRepository.findAll();
     }
 
-    //ToDO-LIste: Erledigte ToDos lesen (E)
+    /** ToDO-LIste: Erledigte ToDos lesen (E) **/
     public List<ToDo> geterledigteToDoListe(){
 
         return toDoRepository.findAllByIsDoneIs(true);
     }
 
-    //ToDo-Liste: Offene ToDos lesen (F)
+    /** ToDo-Liste: Offene ToDos lesen (F) **/
     public List<ToDo> getOffeneToDos(){
         return toDoRepository.findAllByIsDoneIs(false);
     }
 
-    //Todo-Liste: Anzahl an erledigten ToDos lesen (G)
+    /** Todo-Liste: Anzahl an erledigten ToDos lesen (G) **/
 
        public Long getcounterledigteTodos(){
         return this.toDoRepository.countAllByIsDoneIs(true);
     }
 
 
-    //ToDo-Liste: Anzahl an offenen ToDos (H)
+    /** ToDo-Liste: Anzahl an offenen ToDos (H) **/
     public Long getcountoffeneTodos(){
        return this.toDoRepository.countAllByIsDoneIs(false);
     }
