@@ -38,12 +38,4 @@ public class ToDo {
         this.datum = datum;
         this.isDone = isDone;
     }
-
-    //
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    @JoinColumn
-//    private List<ToDo> meineToDoListe;
-
-
-
 }

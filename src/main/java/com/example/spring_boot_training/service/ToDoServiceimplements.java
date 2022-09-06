@@ -4,10 +4,12 @@ import com.example.spring_boot_training.exceptionHandler.EntityExceptionHandler;
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.repository.ToDoRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,7 @@ public class ToDoServiceimplements implements ToDoService{
           return this.toDoRepository.save(toDo);
     }
 
+    /** ToDo-Liste löschen (C) **/
     public void deleteToDoListe(ToDo toDo) {
         this.toDoRepository.delete(toDo);
     }
@@ -34,10 +37,10 @@ public class ToDoServiceimplements implements ToDoService{
         return this.toDoRepository.save(todo);
     }
 
-    /** ToDo-Liste löschen (C) **/
-    public void deleteToDoListe(Long id){
-         this.toDoRepository.deleteById(id);
-    }
+//    /** ToDo-Liste löschen (C) **/
+//    public void deleteToDoListe(Long id){
+//         this.toDoRepository.deleteById(id);
+//    }
 
     /** ToDo-Liste: Alle ToDos lesen (D) **/
     public List<ToDo> getToDoListe(){
@@ -67,12 +70,27 @@ public class ToDoServiceimplements implements ToDoService{
        return this.toDoRepository.countAllByIsDoneIs(false);
     }
 
-    /** Übung: zentrales Exceptionhandling **/
+    /** zentrales Exceptionhandling **/
     public ToDo getException(Long id){
         return toDoRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(String.format("ToDo with the id %d could not be found", id))
         );
     }
+
+    /** Internalization **/
+//    public ToDo getToDo(Long id) {
+//        return toDoRepository.findById(id).orElseThrow(
+//                () -> new EntityNotFoundException(String.format("ToDo with the id %d could not be found", id))
+//        );
+//    }
+
+    public ToDo getToDo(Long id) {
+        return toDoRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException(id.toString())
+        );
+    }
+
+
 
 
 }

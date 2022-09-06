@@ -23,4 +23,5 @@ public interface ToDoService {
 
     public ToDo getException(Long id);
 
+    public ToDo getToDo(Long id);
 }

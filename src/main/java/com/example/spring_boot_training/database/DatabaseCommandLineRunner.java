@@ -83,7 +83,6 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
         todoRepository.saveAll(Arrays.asList(todoListe, todoListe2, todoListe3, todoListe4, todoListe5));
         hausRepository.saveAll(Arrays.asList(haus1, haus2));
 
-//      toDoService.createToDoListe(todoListe);
 
     }
 }
