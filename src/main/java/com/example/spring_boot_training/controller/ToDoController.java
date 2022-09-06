@@ -7,20 +7,22 @@ import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.exceptionHandler.EntityExceptionHandler;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.modelmapper.ModelMapper;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
+
 
 @RestController
 @RequestMapping("/todo")
 @RequiredArgsConstructor
-public class MeinErsterController {
+public class ToDoController {
 
     private final ToDoService toDoService;
     private final ModelMapper modelMapper;
@@ -91,7 +93,6 @@ public class MeinErsterController {
 //    }
 
     /** Internationalisierung **/
-
     @GetMapping("/{id}")
     public ResponseEntity<ToDo> get(@PathVariable Long id) {
         return new ResponseEntity<>(toDoService.getToDo(id), HttpStatus.OK);
