@@ -16,12 +16,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Table;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/todo")
 @RequiredArgsConstructor
+@Table(name = "TODO")
 public class ToDoController {
 
     private final ToDoService toDoService;
