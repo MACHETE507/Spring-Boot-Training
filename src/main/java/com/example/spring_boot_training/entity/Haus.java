@@ -41,4 +41,7 @@ public class Haus {
     @Max(120)
     private Integer flaecheinQM;
 
+    @NotNull
+    private Boolean isDone;
+
 }

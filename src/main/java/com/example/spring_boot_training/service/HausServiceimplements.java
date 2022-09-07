@@ -20,10 +20,6 @@ public class HausServiceimplements implements HausService {
         return this.hausRepository.save(haus);
     }
 
-//    public void deleteHaus(Haus haus){
-//        this.hausRepository.delete((haus));
-//    }
-
     /** Haus:  update **/
     public Haus updateHaus(Haus haus){
         return this.hausRepository.save(haus);
