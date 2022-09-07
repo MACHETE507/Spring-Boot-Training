@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/todo")
 @RequiredArgsConstructor
-@Table(name = "TODO")
+//@Table(name = "TODO")
 public class ToDoController {
 
     private final ToDoService toDoService;
