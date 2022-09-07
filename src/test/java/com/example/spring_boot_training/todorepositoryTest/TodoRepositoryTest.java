@@ -1,4 +1,4 @@
-package com.example.spring_boot_training;
+package com.example.spring_boot_training.todorepositoryTest;
 
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.repository.ToDoRepository;
@@ -32,11 +32,11 @@ public class TodoRepositoryTest {
     public TodoRepositoryTest(ToDoRepository toDoRepository) {
         this.toDoRepository = toDoRepository;
 
-        this.todo1 = new ToDo("programmieren", "30.09.2022", false);
-        this.todo2 = new ToDo("deployen", "25.09.2022",false);
-        this.todo3 = new ToDo("comitten", "20.09.2022",false);
-        this.todo4 = new ToDo("testen", "05.09.2022", true);
-        this.todo5 = new ToDo("pushen", "01.09.2022", true);
+        this.todo1 = new ToDo(1L,"programmieren", "30.09.2022", false);
+        this.todo2 = new ToDo(2L,"deployen", "25.09.2022",false);
+        this.todo3 = new ToDo(3L,"comitten", "20.09.2022",false);
+        this.todo4 = new ToDo(4L, "testen", "05.09.2022", true);
+        this.todo5 = new ToDo(5L,"pushen", "01.09.2022", true);
 
         this.doneTodos   = Arrays.asList(this.todo4, this.todo5);
         this.undoneTodos = Arrays.asList(this.todo1, this.todo2, this.todo3);

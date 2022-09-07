@@ -1,4 +1,4 @@
-package com.example.spring_boot_training;
+package com.example.spring_boot_training.todoserviceTest;
 
 import com.example.spring_boot_training.entity.ToDo;
 import com.example.spring_boot_training.repository.ToDoRepository;
@@ -43,9 +43,9 @@ public class TodoServiceImplTest {
     /** Gibt alle ToDos zurück **/
     @Test
     public void should_return_all_todos(){
-        ToDo todo3 = new ToDo("comitten", "20.09.2022",false);
-        ToDo todo4 = new ToDo("testen", "05.09.2022", true);
-        ToDo todo5 = new ToDo("pushen", "01.09.2022", true);
+        ToDo todo3 = new ToDo(1L, "comitten", "20.09.2022",false);
+        ToDo todo4 = new ToDo(2L, "testen", "05.09.2022", true);
+        ToDo todo5 = new ToDo(3L, "pushen", "01.09.2022", true);
 
         List<ToDo> mytodos = Arrays.asList(todo3, todo4, todo5);
 
@@ -57,9 +57,9 @@ public class TodoServiceImplTest {
     /** Gibt alle abgeschlossenen ToDos zurück **/
     @Test
     public void should_return_all_finished_todos() {
-        ToDo todo3 = new ToDo("comitten", "20.09.2022",false);
-        ToDo todo4 = new ToDo("testen", "05.09.2022", true);
-        ToDo todo5 = new ToDo("pushen", "01.09.2022", true);
+        ToDo todo3 = new ToDo(1L,"comitten", "20.09.2022",false);
+        ToDo todo4 = new ToDo(2L,"testen", "05.09.2022", true);
+        ToDo todo5 = new ToDo(3L,"pushen", "01.09.2022", true);
 
         List<ToDo> mytodos = Arrays.asList(todo3, todo4, todo5);
 
@@ -71,9 +71,9 @@ public class TodoServiceImplTest {
     /** Gibt alle offenen ToDos zurück **/
     @Test
     public void should_return_all_open_todos(){
-        ToDo todo3 = new ToDo("comitten", "20.09.2022",false);
-        ToDo todo4 = new ToDo("testen", "05.09.2022", true);
-        ToDo todo5 = new ToDo("pushen", "01.09.2022", true);
+        ToDo todo3 = new ToDo(1L,"comitten", "20.09.2022",false);
+        ToDo todo4 = new ToDo(2L,"testen", "05.09.2022", true);
+        ToDo todo5 = new ToDo(3L,"pushen", "01.09.2022", true);
 
         List<ToDo> mytodos = Arrays.asList(todo3, todo4, todo5);
 
