@@ -39,9 +39,9 @@ public class TodoControllerTest {
     @Test
     public void getTodo() throws Exception {
 
-        ToDo toDo = new ToDo(2L, "putzen", "02.09.2022", false);
+        ToDo getsingletoDo = new ToDo(2L, "putzen", "02.09.2022", false);
 
-        when(toDoServiceimplements.getToDo(any(Long.class))).thenReturn(toDo);
+        when(toDoServiceimplements.getToDo(any(Long.class))).thenReturn(getsingletoDo);
         this.mockMvc.perform(get("/todo/2"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
@@ -93,30 +93,70 @@ public class TodoControllerTest {
     @Test
     public void createTodo() throws Exception{
 
-        this.mockMvc.perform(post("/todo").content("""                
+        ToDo createtodo = new ToDo(7L, "CompuSafe Event", "07.10.2022", false);
+
+        when(this.toDoServiceimplements.createToDo(any(ToDo.class))).thenReturn(createtodo);
+
+        this.mockMvc.perform(post("/todo")
+                        .contentType(MediaType.APPLICATION_JSON)
+                .content("""                
                 
                 {
-                    "id":10,
+                    "id":7,
                     "aufgabe" : "CompuSafe Event",
                     "datum" : "07.10.2022",
                     "isDone" : false        
                 }                
                 
                 
-                """)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated());
+                """))
+                .andExpect(status().isCreated())
+                .andExpect(content().json("""
+                {
+                    "id":7,
+                    "aufgabe" : "CompuSafe Event",
+                    "datum" : "07.10.2022",
+                    "isDone" : false    
+                }
+        """));
     }
 
     /** Teste updaten eines Todos **/
     @Test
-    public void updateTodo(){
+    public void updateTodo() throws Exception {
 
+        ToDo updatetodo = new ToDo(7L, "CompuSafe Event vorverlegen", "05.10.2022", false);
+
+        when(this.toDoServiceimplements.updateToDo(any(ToDo.class))).thenReturn(updatetodo);
+        //when(this.modelMapper.map(any(ToDoDtoUpdate.class), eq(ToDo.class))).thenReturn(todo);
+
+        this.mockMvc.perform(put("/todo")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("""
+                    {
+                        "id": 7,
+                        "aufgabe": "CompuSafe Event vorverlegen",
+                        "datum": "05.10.2022",
+                        "done": false
+                    }
+            """)
+                )
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+            {
+                        "id": 7,
+                        "aufgabe": "CompuSafe Event vorverlegen",
+                        "datum": "05.10.2022",
+                        "done": false
+            }
+        """));
     }
 
     /** Teste löschen eines Todos **/
     @Test
-    public void deleteTodo(){
-
+    public void deleteTodo() throws Exception {
+        this.mockMvc.perform(delete("/todo/7")
+                )
+                .andExpect(status().isNoContent());
     }
 }
