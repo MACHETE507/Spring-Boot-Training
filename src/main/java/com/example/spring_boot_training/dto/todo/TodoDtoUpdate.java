@@ -25,6 +25,6 @@ public class TodoDtoUpdate {
         @NotEmpty
         private String datum;
 
-        @NotNull
         private Boolean isDone;
+
 }

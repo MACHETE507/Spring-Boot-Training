@@ -24,8 +24,8 @@ public class ToDoServiceimplements implements ToDoService{
     }
 
     /** ToDo-Liste löschen (C) **/
-    public void deleteToDoListe(ToDo toDo) {
-        this.toDoRepository.delete(toDo);
+    public void deleteToDoListe(Long id) {
+        this.toDoRepository.deleteById(id);
     }
 
 

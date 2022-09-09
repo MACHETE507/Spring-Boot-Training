@@ -18,6 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Table;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -43,15 +44,13 @@ public class ToDoController {
     @ResponseStatus(HttpStatus.OK)
     public ToDo getUpdate(@Validated @RequestBody TodoDtoUpdate todoupdate){
         return toDoService.updateToDo(modelMapper.map(todoupdate, ToDo.class));
-        //return this.toDoService.updateToDo(todoupdate);
     }
 
     /** Datensätze entfernen **/
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void getDelete(@Validated @RequestBody TodoDToDelete tododelete){
-        this.toDoService.deleteToDoListe(modelMapper.map(tododelete, ToDo.class));
-        //this.toDoService.deleteToDoListe(todo);
+    public void getDelete(@Validated @PathVariable Long id){
+        this.toDoService.deleteToDoListe(id);
     }
 
     /** Alle Datensätze bzw Start **/

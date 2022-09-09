@@ -9,7 +9,7 @@ public interface ToDoService {
 
     public ToDo createToDo(ToDo toDo);
 
-    public void deleteToDoListe(ToDo toDo);
+    public void deleteToDoListe(Long id);
 
     public ToDo updateToDo(ToDo todoupdate);
 
