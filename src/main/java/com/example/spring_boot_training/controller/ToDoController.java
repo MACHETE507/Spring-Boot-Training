@@ -1,24 +1,18 @@
 package com.example.spring_boot_training.controller;
 
-import com.example.spring_boot_training.dto.todo.TodoDToDelete;
 import com.example.spring_boot_training.dto.todo.TodoDtoCreate;
 import com.example.spring_boot_training.dto.todo.TodoDtoUpdate;
 import com.example.spring_boot_training.entity.ToDo;
-import com.example.spring_boot_training.exceptionHandler.EntityExceptionHandler;
+import com.example.spring_boot_training.repository.UserRepository;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Table;
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -30,18 +24,24 @@ public class ToDoController {
 
     private final ToDoService toDoService;
     private final ModelMapper modelMapper;
+    private UserRepository userRepository;
 
     /** Datensätze erstellen **/
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ToDo getCreate (@Validated @RequestBody TodoDtoCreate todoCreate){
+    @PreAuthorize("hasRole('TODO_CREATE')")
+    public ToDo getCreate (@Validated @RequestBody TodoDtoCreate todoCreate/*, @AuthenticationPrincipal MyUserDetailsService userDetailsService*/){
+//        ToDo toDo = modelMapper.map(todoCreate, ToDo.class);
+//        User user = this.userRepository.findUserByEmail(userDetailsService.get());
+//        toDo.setUser(user);
+
         return toDoService.createToDo(modelMapper.map(todoCreate, ToDo.class));
-        //return this.toDoService.createToDo(todo);
     }
 
     /** Datensätze ändern **/
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('TODO_UPDATE')")
     public ToDo getUpdate(@Validated @RequestBody TodoDtoUpdate todoupdate){
         return toDoService.updateToDo(modelMapper.map(todoupdate, ToDo.class));
     }
@@ -49,6 +49,7 @@ public class ToDoController {
     /** Datensätze entfernen **/
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('TODO_DELETE')")
     public void getDelete(@Validated @PathVariable Long id){
         this.toDoService.deleteToDoListe(id);
     }
@@ -56,6 +57,7 @@ public class ToDoController {
     /** Alle Datensätze bzw Start **/
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('TODO_READ_ALL')")
     public List<ToDo> GetreadTodo(){
         return this.toDoService.getToDoListe();
     }

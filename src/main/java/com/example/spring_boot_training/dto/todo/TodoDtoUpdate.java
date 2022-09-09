@@ -1,5 +1,6 @@
 package com.example.spring_boot_training.dto.todo;
 
+import com.example.spring_boot_training.entity.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -26,5 +27,8 @@ public class TodoDtoUpdate {
         private String datum;
 
         private Boolean isDone;
+
+        @NotNull
+        private final User user;
 
 }
