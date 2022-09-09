@@ -1,17 +1,17 @@
 package com.example.spring_boot_training.database;
 
 import com.example.spring_boot_training.entity.Haus;
+import com.example.spring_boot_training.entity.Role;
 import com.example.spring_boot_training.entity.ToDo;
+import com.example.spring_boot_training.entity.User;
 import com.example.spring_boot_training.repository.HausRepository;
 import com.example.spring_boot_training.repository.ToDoRepository;
+import com.example.spring_boot_training.repository.UserRepository;
 import com.example.spring_boot_training.service.HausService;
-import com.example.spring_boot_training.service.HausServiceimplements;
 import com.example.spring_boot_training.service.ToDoService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -23,6 +23,10 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
     private final ToDoRepository todoRepository;
 
     private final ToDoService toDoService;
+
+    private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
     private final HausRepository hausRepository;
 
@@ -78,11 +82,14 @@ public class DatabaseCommandLineRunner implements CommandLineRunner {
         haus2.setZimmerAnzahl(2);
         haus2.setFlaecheinQM(64);
 
+        User user1 = new User(null, "user@test.de", passwordEncoder.encode("user"), Arrays.asList(Role.USER, Role.ANALYST));
+        User user2 = new User(null, "admin@test.de", passwordEncoder.encode("admin"), Arrays.asList(Role.USER, Role.ADMIN));
+        User user3 = new User(null, "useless@test.de", passwordEncoder.encode("useless"), Arrays.asList());
+
         /** Daten speichern **/
 
         todoRepository.saveAll(Arrays.asList(todoListe, todoListe2, todoListe3, todoListe4, todoListe5));
         hausRepository.saveAll(Arrays.asList(haus1, haus2));
-
-
+        userRepository.saveAll(Arrays.asList(user1, user2, user3));
     }
 }
