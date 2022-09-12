@@ -29,7 +29,7 @@ public class ToDoController {
     /** Datensätze erstellen **/
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('TODO_CREATE')")
+//    @PreAuthorize("hasRole('TODO_CREATE')")
     public ToDo getCreate (@Validated @RequestBody TodoDtoCreate todoCreate/*, @AuthenticationPrincipal MyUserDetailsService userDetailsService*/){
 //        ToDo toDo = modelMapper.map(todoCreate, ToDo.class);
 //        User user = this.userRepository.findUserByEmail(userDetailsService.get());
@@ -41,7 +41,7 @@ public class ToDoController {
     /** Datensätze ändern **/
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasRole('TODO_UPDATE')")
+//    @PreAuthorize("hasRole('TODO_UPDATE')")
     public ToDo getUpdate(@Validated @RequestBody TodoDtoUpdate todoupdate){
         return toDoService.updateToDo(modelMapper.map(todoupdate, ToDo.class));
     }
@@ -49,7 +49,7 @@ public class ToDoController {
     /** Datensätze entfernen **/
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PreAuthorize("hasRole('TODO_DELETE')")
+//    @PreAuthorize("hasRole('TODO_DELETE')")
     public void getDelete(@Validated @PathVariable Long id){
         this.toDoService.deleteToDoListe(id);
     }
@@ -57,7 +57,7 @@ public class ToDoController {
     /** Alle Datensätze bzw Start **/
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasRole('TODO_READ_ALL')")
+//    @PreAuthorize("hasRole('TODO_READ_ALL')")
     public List<ToDo> GetreadTodo(){
         return this.toDoService.getToDoListe();
     }

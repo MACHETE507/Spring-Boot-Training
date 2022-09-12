@@ -138,7 +138,7 @@ public class TodoControllerTest {
         when(this.toDoServiceimplements.updateToDo(any(ToDo.class))).thenReturn(updatetodo);
         when(this.modelMapper.map(any(TodoDtoUpdate.class),eq(ToDo.class))).thenReturn(updatetodo);
 
-        this.mockMvc.perform(put("/todo")
+        this.mockMvc.perform(put("/todo/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                     {

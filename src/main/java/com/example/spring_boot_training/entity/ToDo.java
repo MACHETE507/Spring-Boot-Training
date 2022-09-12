@@ -30,13 +30,13 @@ public class ToDo {
 
     private Boolean isDone;
 
-    @ManyToOne
-    private User user;
+//    @ManyToOne
+//    private User user;
 
-    //    public ToDo(Long id, String aufgabe, String datum, Boolean isDone) {
-//        this.id = id;
-//        this.aufgabe = aufgabe;
-//        this.datum = datum;
-//        this.isDone = isDone;
-//    }
+        public ToDo(Long id, String aufgabe, String datum, Boolean isDone) {
+        this.id = id;
+        this.aufgabe = aufgabe;
+        this.datum = datum;
+        this.isDone = isDone;
+    }
 }
